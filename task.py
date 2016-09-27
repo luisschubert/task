@@ -37,7 +37,7 @@ def updateRecentList(taskName):
 
 
 def saveToLog(totalTime, taskName, startTime, endTime):
-    f = open("/users/luisschubert/Documents/task/log.txt", "a")
+    f = open("/Users/luisschubert/Documents/task/log.txt", "a")
     formatStartTime = datetime.datetime.fromtimestamp(int(startTime)).strftime('%Y-%m-%d %H:%M:%S')
     formatEndTime = datetime.datetime.fromtimestamp(int(endTime)).strftime('%Y-%m-%d %H:%M:%S')
     logLine = taskName + '\t' + str(totalTime) + '\t' + formatStartTime + '\t' + formatEndTime + '\n'
@@ -54,12 +54,12 @@ def startTask(taskName):
 def endTask(taskName):
     if len(startTimes) == 0:
         print "You ain't doin shit dawg"
-    else:
+    elif startTimes.has_key(taskName):
         startTime = startTimes[taskName]
         endTime = time.time()
         totalTime = endTime - startTime
         saveToLog(totalTime, taskName, startTime, endTime)
-    startTimes.pop(taskName)
+        startTimes.pop(taskName)
 
 
 # PROGRAM BODY
